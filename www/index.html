@@ -1,0 +1,914 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport"
+        content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <link href="css/font-awesome.css" rel="stylesheet" />
+    <link href="css/jquery.mobile-1.4.5.min.css" rel="stylesheet" />
+    <link href="css/index.css" rel="stylesheet" />
+    <script src="https://kit.fontawesome.com/b34ae8163f.js"></script>
+
+    <title>Simplify Lite | Simplify Team</title>
+</head>
+
+<body>
+    <!--HOME-->
+    <div data-role="page" id="page_home">
+        <div data-role="main" class="ui-content" style="text-align:center;">
+            <img src="images/Logotipo-Simply_b.png" style="padding:20px; width:65%" />
+            <label for="txt-email">Email</label>
+            <input type="text" name="txt-email" id="txt-email" value="">
+            <label for="txt-password">Password</label>
+            <input type="password" name="txt-password" id="txt-password" value="">
+            <button id="btn-login" class="ui-btn-active">Login</button>
+            <form>
+                <input type="checkbox" name="checkbox-mini-lembrar" id="checkbox-mini-lembrar" data-mini="true">
+                <label for="checkbox-mini-lembrar">Remember</label>
+            </form>
+            <div class="container" style="text-align:right; font-size:14px; margin-right:10px;">
+                <span class="psw"><a href="#page_forgotpsw">Forgot Password?</a></span>
+            </div>
+        </div>
+        <div data-role="footer" data-position="fixed" style="text-align:center">
+            <div data-position="fixed">
+                <a href="http://www.blog.simplifylite.com"><img
+                        style="padding-top:0px; margin-bottom:53px; height:100%; width:100%;"
+                        src="images/banner_home.png" /></a>
+            </div>
+        </div>
+        <div data-role="footer" data-position="fixed" style="margin:0; padding:0;">
+            <div data-role="navbar">
+                <ul>
+                    <li><a href="#page_about" data-icon="info">About</a></li>
+                    <li><a href="#page_registo" data-icon="user">New User</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--/page_home-->
+    <!--Página page_registo-->
+    <div data-role="page" id="page_registo">
+        <div data-role="main" class="ui-content" style="text-align:center; padding:20px;">
+            <img src="images/icon-user.png" style="padding:20px; width:85px; height:85px;" />
+            <label for="txt-email-create">Your Email</label>
+            <input type="email" name="txt-email-create" id="txt-email-create" value="">
+            <label for="txt-password-createfirst">Insert Password</label>
+            <input type="password" name="txt-password-createfirst" id="txt-password-createfirst" value="">
+            <label for="txt-password-create">Confirm Password</label>
+            <input type="password" name="txt-password-create" id="txt-password-create" value="">
+            <div>
+                <form>
+                    <input type="checkbox" name="checkbox-mini-0" id="checkbox-mini-0" data-mini="true">
+                    <label for="checkbox-mini-0">I agree with Terms and Conditions</label>
+                </form>
+            </div>
+            <button id="btn-create" class="ui-btn-active">Register New User</button>
+            <div class="container" style="text-align:right; font-size:14px; margin-right:10px">
+                <span class="psw"><a href="#page_terms">Terms and Conditions</a></span>
+            </div>
+        </div>
+        <div data-role="footer" data-position="fixed" style="margin-top:5px" ;>
+            <div data-role="navbar">
+                <ul>
+                    <li><a href="#page_home" data-icon="back">Back</a></li>
+                    <li><a href="#page_help" data-icon="alert">Help</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--/page_registo-->
+    <!--Página page_autenticacao-->
+    <div data-role="page" id="page_autenticacao">
+        <div data-role="main" class="ui-content" style="text-align:center" ;>
+            <img src="images/icon-file.png" style="padding:20px; width:85px; height:85px; " />
+            <div class="container" style="text-align:left" ;>
+                <label for="docname" style="padding:5px" ;><b>Insert your Documents</b></label>
+                <input type="text" placeholder="Document ID / Name" name="docname" id="docname" required>
+                  <!--<label for="verificationdate" style="padding:5px" ;><b>Expiration Date</b> (optional)</label>
+                <input type="date" placeholder="Expiration / Verification date" name="verificationdate"
+                    id="verificationdate">
+                <label for="file" style="padding:5px" ;><b>Select File</b></label>-->
+                <input type="file" id="file" name="file" />
+                <div style="padding:5px" ;>
+                    <button id="btn-send" class="ui-btn-active">Send File</button>
+                </div>
+                <div id="sendDiv" style="text-align:center;display:none;">
+                    <img src="images/ajax-loader.gif" />
+                </div>
+            </div>
+        </div>
+        <div data-role="footer" data-position="fixed">
+            <div data-role="navbar">
+                <ul>
+                    <li><a href="#page_newmenu" data-icon="bars">Main Menu</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--/page_autenticacao-->
+    <!--Página page_pesquisar-->
+    <div data-role="page" id="page_pesquisar">
+        <div data-role="main" class="ui-content" style="text-align:center" ;>
+            <img src="images/icon-search.png" style="padding:20px; width:85px; height:85px; " />
+            <div class="container" style="text-align:left" ;>
+                <label for="text-search"><b>Find your Documents</b></label>
+                <input type="search" placeholder="Filter by..." name="text-search" id="text-search" required>
+                <button id="btn-pesquisar" class="ui-btn-active">Search</button>
+            </div>
+            <div id="loaderDiv" style="text-align:center;display:none;">
+                <img src="images/ajax-loader.gif" />
+            </div>
+            <div id="show">
+            </div>
+        </div>
+        <div data-role="footer" data-position="fixed">
+            <div data-role="navbar">
+                <ul>
+                    <li><a href="#page_newmenu" data-icon="bars">Main Menu</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--/page_pesquisar-->
+    <!--page_verdocs-->
+    <div data-role="page" id="page_verdocs">
+        <div data-role="header" data-position="fixed">
+            <h1 id="nomeimagem"> </h1>
+        </div>
+        <div data-role="main" align="Center" class="ui-content">
+            <a href="#page_pesquisar" class="ui-btn ui-shadow ui-corner-all ui-icon-delete ui-btn-icon-notext"
+                style="margin-left:85%">Close</a>
+            <div id="verdocs">
+            </div>
+            <img id="myimg" />
+        </div>
+        <div data-role="footer" data-position="fixed">
+            <div data-role="navbar">
+                <ul>
+                    <li><button id="btn-baixar" data-icon="action">Share</button></li>
+                    <li><a href="#page_eliminardoc" data-icon="minus">Delete</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--page_verdocs-->
+    <!--page_about-->
+    <div data-role="page" id="page_about">
+        <div data-role="main" align="center" class="ui-content">
+            <img src="images/Logotipo-Simply_b.png" style="padding:20px; width:65%" />
+            <div style="padding:10px; font-size:15px">
+                <table>
+                    <tr>
+                        <td> <img src="images/Logotipo-Android_icone.png" style="width:30px; padding-right:2px;" /></td>
+                        <td>
+                            <a href="https://www.wesimplify.app"> We Simplify</a> for Android
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div style="font-size:14px; padding:10px; text-align:left">
+                We aim to make the world a more connected, simpler and better place. That’s why we have developed an
+                environmentally friendly, intelligent and efficient <b>Marketing</b> tool. <br /> <br />
+                Together we can increase productivity and reduce the financial and environmental costs of your company
+                while we take care of our planet.
+                <br /><br />
+                <div style="font-size:15px; text-align:center">
+                    <b>Join Us in This Mission<br /></b>
+                </div>
+            </div>
+            <div style="padding:10px;">
+                <span style="font-size: 20px; padding-right:10px" ;>
+                    <a href="https://www.facebook.com/andrefcosta.c.o.m"><i class="fab fa-facebook-f fa-2x"></i></a>
+                </span>
+                <span style="font-size: 20px; padding-right:10px" ;>
+                </span>
+                <span style="font-size: 20px" ;>
+                    <a href="https://www.linkedin.com/company/andrefcosta"><i class="fab fa-linkedin fa-2x"></i></a>
+                </span>
+            </div><br />
+            <div style="font-family:Arial; font-size:12px;">
+                Licensed for Wes - We Simplify<br />
+                Proudly Developed by <br /><a href="https://www.andrefcosta.com"> andre f costa</a> | Web Design &
+                Engineering<br />
+            </div>
+            <div data-role="footer" data-position="fixed" style="margin-top:5px" ;>
+                <div data-role="navbar">
+                    <ul>
+                        <li><a href="#page_home" data-icon="back">Back</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--page_about-->
+    <!--page_help-->
+    <div data-role="page" id="page_help">
+        <div data-role="main" align="center" class="ui-content">
+            <img src="images/icon-ajuda.png" style="width:85px; height:85px; padding:20px;" />
+            <div class="container">
+
+                <TABLE BORDER=0 CELLSPACING=10 style="color:black; text-align:center;">
+                    <TR>
+                        <TD WIDTH=250 BGCOLOR=#f3f3f3><b>Username</b></TD>
+                        <TD WIDTH=500 style="text-align:left">Enter a valid email address</TD>
+                    </TR>
+                    <TR>
+                        <TD WIDTH=250 BGCOLOR=#f3f3f3><b>Password</b></TD>
+                        <TD WIDTH=500 style="text-align:left">Enter a valid password (6 characters or more)</TD>
+                    </TR>
+                    <TR>
+                        <TD WIDTH=250 BGCOLOR=#f3f3f3><b>Terms and Conditions</b></TD>
+                        <TD WIDTH=500 style="text-align:left">
+                            Read and agree to the terms and conditions <i class="fas fa-check-square"></i>
+                        </TD>
+                    </TR>
+                    <TR>
+                        <TD WIDTH=250 BGCOLOR=#f3f3f3><b>New User</b></TD>
+                        <TD WIDTH=500 style="text-align:left">Register by clicking on "Create New User"</TD>
+                    </TR>
+                    <TR>
+                        <TD WIDTH=250 BGCOLOR=#f3f3f3><b>Support</b></TD>
+                        <TD WIDTH=500 style="text-align:left">Ask for support<br /> <i class="fas fa-envelope"></i>
+                            hello@wesimplify.app </TD>
+                    </TR>
+                </TABLE>
+            </div>
+            <div>
+                <br /><br />
+                <div style="text-align:center">
+                    <b>Contact Us<br /></b>
+                </div>
+                <div style="align-content:center; padding-bottom:15px">
+                    <table>
+                        <tr>
+                            <td style="padding-right:5px;"> <a href="https://wa.me/351935857057"><img
+                                        src="images/phone_icone.png" /></a></td>
+                            <td style="padding-right:15px;">
+                                <p>Whats'app</p>
+                            </td>
+                            <td style="padding-right:5px;"> <a href="hello@wesimplify.app"><img
+                                        src="images/email_icone.png" /></a></td>
+                            <td>
+                                <p>E-mail</p>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div data-role="footer" data-position="fixed" style="margin-top:5px" ;>
+            <div data-role="navbar">
+                <ul>
+                    <li><a href="#page_registo" data-icon="back">Back</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!--page_help-->
+    <!--page_settings-->
+    <div data-role="page" id="page_settings">
+        <div data-role="main" class="ui-content" style="text-align:center;">
+            <img src="images/icon-pass.png" style="padding:20px; width:85px; height:85px;" />
+            <div class="container">
+                <label for="txt-passwordatualizafirst">New Password</label>
+                <input type="password" name="txt-passwordatualizafirst" id="txt-passwordatualizafirst" value="">
+                <label for="txt-passwordatualiza">Confirm Password</label>
+                <input type="password" name="txt-passwordatualiza" id="txt-passwordatualiza" value="">
+                <button id="btn-atualiza" class="ui-btn-active">Update</button>
+
+                <div class="container" style="text-align:right; font-size:14px; margin-right:10px;">
+                    <span class="psw"><a href="#page_delete">Delete Account</a></span>
+                </div>
+            </div>
+        </div>
+        <div data-role="footer" data-position="fixed">
+            <div data-role="navbar">
+                <ul>
+                    <li><a href="#page_newmenu" data-icon="bars">Main Menu</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--page_settings-->
+    <!--Página_forgotpsw-->
+    <div data-role="page" id="page_forgotpsw">
+        <div data-role="main" class="ui-content" style="text-align:center; padding:20px;">
+            <img src="images/icon-pass.png" style="padding:20px; width:85px; height:85px;" />
+            <label for="txt-email-createrecuperar">Insert Email</label>
+            <input type="email" name="txt-email-createrecuperar" id="txt-email-createrecuperar" value="">
+            <button id="btn-createrecuperar" class="ui-btn-active">Recover Password</button>
+        </div>
+        <div data-role="footer" data-position="fixed">
+            <div data-role="navbar">
+                <ul>
+                    <li><a href="#page_home" data-icon="back">Back</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--/Página_forgotpsw-->
+    <!--Página_delete-->
+    <div data-role="page" id="page_delete">
+        <div data-role="main" class="ui-content" style="text-align:center;">
+            <img src="images/icon-delete.png" style="width:85px; height:85px; padding:20px;" />
+            <label for="docname" style="padding:5px" ;><b>DELETE ACCOUNT</b></label>
+            <label for="btn-apagar">Please confirm that you want to <br /> delete your account?</label>
+            <button id="btn-apagar" class="ui-btn-corner-all"
+                style="background-color:#d00606;color:white; margin-top:15px;">ELIMINAR</button>
+        </div>
+        <div data-role="footer" data-position="fixed">
+            <div data-role="navbar">
+                <ul>
+                    <li><a href="#page_settings" data-icon="back">Back</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--/Página_delete-->
+    <!--Página_eliminardoc-->
+    <div data-role="page" id="page_eliminardoc">
+        <div data-role="main" class="ui-content" style="text-align:center;">
+            <img src="images/icon-delete.png" style="width:85px; height:85px; padding:20px;" />
+            <label for="docname" style="padding:5px" ;><b>DELETE CARD / DOC</b></label>
+            <label for="btn-apagar-doc">Please confirm that you want to <br /> delete your account ?</label>
+            <button id="btn-apagar-doc" class="ui-btn-corner-all"
+                style="background-color:#d00606;color:white; margin-top:15px;">ELIMINAR</button>
+        </div>
+        <div data-role="footer" data-position="fixed">
+            <div data-role="navbar">
+                <ul>
+                    <li><a href="#page_verdocs" data-icon="back">Back</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--/Página_delete-->
+    <!--Página_terms-->
+    <div data-role="page" id="page_terms">
+        <div data-role="main" align="Center" class="ui-content">
+            <img src="images/icon-termos.png" style="width:85px; height:85px; padding:20px;" />
+            <div class="container" style=" text-align:justify;">
+                <b>Termos e Condições</b><br /><br />
+                A utilização da App We Simplify implica que leia, compreenda e aceite os seguintes termos e condições de
+                utilização. Caso não os tencione aceitar ou cumprir solicitamos que não continue a sua navegação na
+                nossa aplicação.
+                <b><br /><br />INTRODUÇÃO<br /></b>
+                Os presentes Termos e Condições regulam o acesso e utilização do website www.wesimplify.app, assim como,
+                da aplicação para Android e IOS e qualquer plataforma associada necessária para o correto funcionamento
+                do sistema. Estes são da responsabilidade da equipa de desenvolvimento deste software (doravante “We
+                Simplify”). Aconselhamos a leitura da Política de Privacidade e Cookies, que são parte integrante dos
+                Termos e Condições do Website e App.
+                A We Simplify reserva-se no direito de atualizar parcialmente ou totalmente os presentes Termos e
+                Condições, assim como, as políticas supramencionadas pelo que aconselhamos uma consulta regular.
+                O acesso a este Website, assim como, às suas plataformas móveis é autorizado para fins pessoais e para
+                promoção da atividade da We Simplify. A violação dos Termos e Condições poderá implicar a suspensão e
+                eliminação da autorização para utilização do mesmo.
+                Ao utilizar a App We Simplify, na sua versão para Desktop ou Mobile compromete-se a indemnizar e a
+                exonerar a We Simplify de quaisquer danos, responsabilidades, reclamações ou pedidos de compensação a
+                terceiros em consequência da utilização do sistema simpliFY, em incumprimento com os presentes Termos e
+                Condições.
+                <b><br /><br />LICENÇA DE UTILIZAÇÃO<br /></b>
+                A We Simplify autoriza o acesso e utilização das suas plataformas para Desktop e Mobile (entenda-se o
+                Website e a App) para fins pessoais e/ou informativos, conforme previsto nos presentes Termos e
+                Condições.
+                Nos termos da lei e dos presentes Termos e Condições, o utilizador não poderá copiar, utilizar,
+                transferir, alugar, alterar, adaptar, tentar modificar ou alterar o código fonte, efetuar operações de
+                engenharia reversa, descompilar ou desmontar, no todo ou em parte, o conteúdo das plataformas
+                previamente referidas.
+                <b><br /><br />RESPONSABILIDADE<br /></b>
+                O acesso e utilização do Website, assim como, da App Móvel é uma atividade regida pelos utilizadores que
+                detêm de forma exclusiva a responsabilidade pela utilização e acesso a todas as páginas e conteúdos e
+                funcionalidades dos mesmos.
+                Os utilizadores são também os únicos responsáveis pela comunicação de informação ou dados incorretos,
+                falsos, ou de terceiros, sem o seu consentimento e pela utilização desconforme e não autorizada de
+                conteúdos e informações presentes no Website.
+                <b><br /><br />PROTEÇÃO DE DADOS PESSOAIS DOS UTILIZADORES<br /></b>
+                Constitui parte integrante dos presentes Termos e Condições, a Política de Privacidade e Cookies.
+                Aconselhamos a sua leitura por parte de todos os utilizadores. Não obstante a integral leitura da
+                Política de Privacidade, informamos que: Os seus dados não serão partilhados com terceiros, da mesma
+                forma, não serão utilizados para qualquer finalidade que não aquele para o qual o tenha fornecido. Mais
+                informamos que as plataformas sob a nossa responsabilidade são desenvolvidas e geridas com rigor e
+                profissionalismo, com base nas tecnologias mais avançadas e seguras disponíveis. Pelo que asseguramos,
+                desta forma, um nível de segurança avançado para os seus dados pessoais, cartões e documentos.
+                <b><br /><br />CONTEÚDO<br /></b>
+                Todo e qualquer conteúdo e informação presente neste Website poderá ser regularmente revisto, atualizado
+                e alterado sem aviso prévio.
+                A We Simplify informa e salvaguarda que esta plataforma pode conter incorreções e/ou erros, pelo que o
+                utilizador é o único e exclusivo responsável pela avaliação da informação e conteúdos obtidos através do
+                mesmo. Sendo que a We Simplify não poderá ser responsabilizada por quaisquer danos resultantes da
+                utilização das informações e dados disponibilizados no seu Website e App Móvel, assim como, danos
+                causados por vírus, ficheiros danificados, ou qualquer questão relacionada com os riscos de utilização
+                dos serviços de Internet.
+                Contratamos os nossos serviços e tecnologias para as nossas plataformas em fornecedores seguros, idóneos
+                e credíveis e aplica os seus melhores esforços para salvaguardar a segurança dos utilizadores e dos seus
+                dados e informações pessoais não entanto não pode garantir que qualquer uma das páginas ou elementos
+                presentes neste Website não seja afetado ou atacado com alguma tecnologia ou atitude maliciosa por parte
+                de terceiros que impeça o acesso a ambas as plataformas ou tenha algum impacto menos positivo na
+                utilização das tecnologias e equipamentos dos utilizadores.
+                Empenhamo-nos para manter as melhores condições de acesso e utilização do seu WebSite e App Móvel,
+                contudo reserva-se no direito de suspender ou eliminar o acesso ao mesmo a qualquer momento sem aviso
+                prévio.
+                <b><br /><br />PROPRIEDADE INTLECTUAL<br /></b>
+                Todo o conteúdo das plataformas We Simplify, incluindo as marcas registadas, logótipos, imagens,
+                ilustrações e textos, encontra-se protegido por Direitos de Propriedade Intelectual. Caso utilize ou
+                replique de forma não autorizada o conteúdo desta aplicação poderá estar a violar a legislação sobre
+                propriedade intelectual, marcas comerciais e direitos de personalidade.
+                <b><br /><br />LIGAÇÕES A SITES DE TERCEIROS<br /></b>
+                O site da We Simplify possui ligações para outros sites (sites vinculados), os quais, a nosso ver, podem
+                conter informações / ferramentas úteis para os nossos visitantes. A nossa política de privacidade não é
+                aplicada a sites de terceiros, pelo que, caso visite outro site a partir do nosso deverá ler a política
+                de privacidade do mesmo. Não nos responsabilizamos pela política de privacidade ou conteúdo presente
+                nesses mesmos sites.
+                <b><br /><br />OBRIGAÇÕES DO UTILIZADOR<br /></b>
+                Ao continuar a utilizar este sistema declara que:<br />
+                Compreendeu e aceitou os Termos e Condições, Política de Privacidade e Cookies;<br />
+                Respeitará toda a propriedade intelectual presente no mesmo;<br />
+                Aceita que o conteúdo do mesmo poderá estar incompleto, impreciso, não atualizado, ou que poderá não
+                satisfazer as suas necessidades e requisitos.
+
+                <b><br /><br />CONCLUSÃO<br /></b>
+                As presentes condições regem-se pelo direito Português, disputas serão resolvidas pelo Tribunal da
+                Comarca de Vila Nova de Gaia. Como utilizador deve contactar os nossos serviços para qualquer questão
+                relacionada com os Termos e Condições do Website ou plataformas mobile, através do seguinte endereço de
+                e-mail para hello@wesimplify.app
+                <p>Atualizado e Revisto em 17-08-2020</p>
+            </div>
+        </div>
+        <div>
+            <br />
+        </div>
+        <div data-role="footer" data-position="fixed">
+            <div data-role="navbar">
+                <ul>
+                    <li><a href="#page_registo" data-icon="back">Back</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--/Página_terms-->
+    <!--page_newmenu-->
+    <div data-role="page" id="page_newmenu">
+        <div data-role="header">
+            <h1></h1>
+            <a href="#page_settings"
+                class="ui-btn-right ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-right ui-icon-gear">Settings</a>
+        </div>
+        <div data-role="main" align="Center" class="ui-content">
+            <img src="images/icon-menu.png" style="padding:20px; width:140px; height:140px; " />
+            <div class="container" style=" text-align:center;">
+                <b>André F. Costa</b><br />
+                Web Developer & Creative Designer<br />
+                andre f costa | Web Design and Engineering<br />
+                <br /><br />
+
+                <div class="container">
+                    <div class="butoesnewmenu">
+                        <label style="text-decoration:inherit;font-size:14px; color:#444444;" for="doctype">Your Marketing Hacks</label>
+                        <button style="padding-bottom: 10%; padding-top: 10%;" onclick="location.href='#page_sharecard'"
+                            class="ui-btn ui-btn-active ui-shadow ui-corner-all ui-btn-icon-left ui-icon-bullets">LET'S CONNECT</button>
+                    </div>
+                </div><br /><br />
+                <div class="container">
+                    <div class="butoesnewmenu">
+                        <label style="text-decoration:inherit; font-size:14px; color:#444444;" for="doctype">Marketing & Networking Stuff</label>
+                        <button onclick="location.href='#page_pesquisar'"
+                            class="ui-btn ui-btn-active ui-shadow ui-corner-all ui-btn-icon-left ui-icon-search">FIND</button>
+                        <button onclick="location.href='#page_autenticacao'"
+                            class="ui-btn ui-btn-active ui-shadow ui-corner-all ui-btn-icon-left ui-icon-cloud">UPLOAD</button>
+                    </div>
+                </div>
+            </div>
+            <!--<div class="container">
+                <div class="butoesnewmenu">
+                    <label style="text-decoration:inherit; font-size:14px; color:#444444;" for="doctype">Send Customers Survey</label>
+                    <button onclick="location.href='#page_isq'" class="ui-btn ui-btn-active ui-shadow ui-corner-all ui-btn-icon-left ui-icon-star">CUSTOMERS SURVEY</button>
+                </div>
+            </div>
+        </div>-->
+            <div data-role="footer" data-position="fixed">
+                <div data-role="navbar">
+                    <ul>
+                        <li><a href="#page_home" data-icon="delete">Close</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--page_newmenu-->
+    <!--page_isq-->
+    <div data-role="page" id="page_isq">
+        <div data-role="header">
+            <h1></h1>
+            <a href="#page_settings"
+                class="ui-btn-right ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-right ui-icon-gear">Settings</a>
+        </div>
+        <div data-role="main" align="Center" class="ui-content">
+            <img src="images/icon-feedback.png" style="padding:20px; width:85px; height:85px; " />
+            <div class="container">
+
+                <div id="mauticform_wrapper_simplifyappcustomerssurveyexample" class="mauticform_wrapper">
+                    <form autocomplete="false" role="form" method="post"
+                        action="http://gosimplify.pt/mautic/form/submit?formId=5"
+                        id="mauticform_simplifyappcustomerssurveyexample"
+                        data-mautic-form="simplifyappcustomerssurveyexample" enctype="multipart/form-data">
+                        <div class="mauticform-error" id="mauticform_simplifyappcustomerssurveyexample_error"></div>
+                        <div class="mauticform-message" id="mauticform_simplifyappcustomerssurveyexample_message">
+                        </div>
+                        <div class="mauticform-innerform">
+
+
+                            <div class="mauticform-page-wrapper mauticform-page-1" data-mautic-form-page="1">
+
+                                <div id="mauticform_simplifyappcustomerssurveyexample_first_name"
+                                    data-validate="first_name" data-validation-type="text"
+                                    class="mauticform-row mauticform-text mauticform-field-1 mauticform-required">
+                                    <label id="mauticform_label_simplifyappcustomerssurveyexample_first_name"
+                                        for="mauticform_input_simplifyappcustomerssurveyexample_first_name"
+                                        class="mauticform-label">First Name</label>
+                                    <input id="mauticform_input_simplifyappcustomerssurveyexample_first_name"
+                                        name="mauticform[first_name]" value="" class="mauticform-input" type="text">
+                                    <span class="mauticform-errormsg" style="display: none;">This is
+                                        required.</span>
+                                </div>
+
+                                <div id="mauticform_simplifyappcustomerssurveyexample_last_name"
+                                    data-validate="last_name" data-validation-type="text"
+                                    class="mauticform-row mauticform-text mauticform-field-2 mauticform-required">
+                                    <label id="mauticform_label_simplifyappcustomerssurveyexample_last_name"
+                                        for="mauticform_input_simplifyappcustomerssurveyexample_last_name"
+                                        class="mauticform-label">Last Name</label>
+                                    <input id="mauticform_input_simplifyappcustomerssurveyexample_last_name"
+                                        name="mauticform[last_name]" value="" class="mauticform-input" type="text">
+                                    <span class="mauticform-errormsg" style="display: none;">This is
+                                        required.</span>
+                                </div>
+
+                                <div id="mauticform_simplifyappcustomerssurveyexample_email" data-validate="email"
+                                    data-validation-type="email"
+                                    class="mauticform-row mauticform-email mauticform-field-3 mauticform-required">
+                                    <label id="mauticform_label_simplifyappcustomerssurveyexample_email"
+                                        for="mauticform_input_simplifyappcustomerssurveyexample_email"
+                                        class="mauticform-label">Email</label>
+                                    <input id="mauticform_input_simplifyappcustomerssurveyexample_email"
+                                        name="mauticform[email]" value="" class="mauticform-input" type="email">
+                                    <span class="mauticform-errormsg" style="display: none;">Please, enter a valid
+                                        email
+                                        address.</span>
+                                </div>
+
+                                <div id="mauticform_simplifyappcustomerssurveyexample_customer_id"
+                                    class="mauticform-row mauticform-text mauticform-field-4">
+                                    <label id="mauticform_label_simplifyappcustomerssurveyexample_customer_id"
+                                        for="mauticform_input_simplifyappcustomerssurveyexample_customer_id"
+                                        class="mauticform-label">Customer ID</label>
+                                    <input id="mauticform_input_simplifyappcustomerssurveyexample_customer_id"
+                                        name="mauticform[customer_id]" value="" placeholder="Identify customer..."
+                                        class="mauticform-input" type="text">
+                                    <span class="mauticform-errormsg" style="display: none;"></span>
+                                </div>
+
+                                <div id="mauticform_simplifyappcustomerssurveyexample_sale__service_id"
+                                    class="mauticform-row mauticform-text mauticform-field-5">
+                                    <label id="mauticform_label_simplifyappcustomerssurveyexample_sale__service_id"
+                                        for="mauticform_input_simplifyappcustomerssurveyexample_sale__service_id"
+                                        class="mauticform-label">Sale / Service ID</label>
+                                    <input id="mauticform_input_simplifyappcustomerssurveyexample_sale__service_id"
+                                        name="mauticform[sale__service_id]" value=""
+                                        placeholder="Identify sale or service provided..." class="mauticform-input"
+                                        type="text">
+                                    <span class="mauticform-errormsg" style="display: none;"></span>
+                                </div>
+
+                                <div id="mauticform_simplifyappcustomerssurveyexample_send"
+                                    class="mauticform-row mauticform-button-wrapper mauticform-field-6">
+                                    <button type="submit" name="mauticform[send]"
+                                        id="mauticform_input_simplifyappcustomerssurveyexample_send" value=""
+                                        class="mauticform-button btn btn-default">Send</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <input type="hidden" name="mauticform[formId]"
+                            id="mauticform_simplifyappcustomerssurveyexample_id" value="5">
+                        <input type="hidden" name="mauticform[return]"
+                            id="mauticform_simplifyappcustomerssurveyexample_return" value="">
+                        <input type="hidden" name="mauticform[formName]"
+                            id="mauticform_simplifyappcustomerssurveyexample_name"
+                            value="simplifyappcustomerssurveyexample">
+
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div data-role="footer" data-position="fixed">
+            <div data-role="navbar">
+                <ul>
+                    <li><a href="#page_newmenu" data-icon="bars">Main Menu</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--page_isq-->
+    <!--page_sharecard-->
+    <div data-role="page" id="page_sharecard">
+        <div data-role="header">
+            <h1></h1>
+            <a href="#page_settings"
+                class="ui-btn-right ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-right ui-icon-gear">Settings</a>
+        </div>
+        <div data-role="main" align="Center" class="ui-content">
+            <div class="container">
+                <div>
+                    <p>Easy Meeting Scheduler</p>
+                </div>
+                <div data-role="navbar">
+                    <ul>
+                        <li><a href="#page_email" data-icon="mail">Send Email</a></li>
+                        <li><a href="#page_sharecard" data-icon="action" style="background:#e5e5e5">Meet</a></li>
+                        <li><a href="#page_qrcode" data-icon="camera">QR Code</a></li>
+
+                    </ul>
+                </div>
+                <div><br /></div>
+
+                <!-- Calendly inline widget begin -->
+                <div class="calendly-inline-widget" data-url="https://calendly.com/andrefcosta"
+                    style="min-width:320px;height:630px;"></div>
+                <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js"></script>
+                <!-- Calendly inline widget end -->
+
+                <div data-role="footer" data-position="fixed">
+                    <div data-role="navbar">
+                        <ul>
+                            <li><a href="#page_newmenu" data-icon="back">Back</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Sharecard-->
+    <!--page_email-->
+    <div data-role="page" id="page_email">
+        <div data-role="header">
+            <h1></h1>
+            <a href="#page_settings"
+                class="ui-btn-right ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-right ui-icon-gear">Settings</a>
+        </div>
+     
+
+        <div data-role="main" align="Center" class="ui-content">
+            <div class="container">
+                <div>
+                    <p>Share Your Presentation by Email</p>
+                </div>
+                <div data-role="navbar">
+                    <ul>
+                        <li><a href="#page_email" data-icon="mail" style="background:#e5e5e5">Send Email</a></li>
+                        <li><a href="#page_sharecard" data-icon="action" >Meet</a></li>
+                        <li><a href="#page_qrcode" data-icon="camera">QR Code</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <br />
+                </div>
+
+
+                <script type="text/javascript">
+                    /** This section is only needed once per page if manually copying **/
+                    if (typeof MauticSDKLoaded == 'undefined') {
+                        var MauticSDKLoaded = true;
+                        var head            = document.getElementsByTagName('head')[0];
+                        var script          = document.createElement('script');
+                        script.type         = 'text/javascript';
+                        script.src          = 'https://wesimplify.pt/mautic/media/js/mautic-form.js';
+                        script.onload       = function() {
+                            MauticSDK.onLoad();
+                        };
+                        head.appendChild(script);
+                        var MauticDomain = 'https://wesimplify.pt/mautic';
+                        var MauticLang   = {
+                            'submittingMessage': "Please wait..."
+                        }
+                    }else if (typeof MauticSDK != 'undefined') {
+                        MauticSDK.onLoad();
+                    }
+                </script>
+
+
+<style type="text/css" scoped>
+    .mauticform_wrapper { max-width: 600px; margin: 10px auto; }
+    .mauticform-innerform {}
+    .mauticform-post-success {}
+    .mauticform-name { font-weight: bold; font-size: 1.5em; margin-bottom: 3px; }
+    .mauticform-description { margin-top: 2px; margin-bottom: 10px; }
+    .mauticform-error { margin-bottom: 10px; color: red; }
+    .mauticform-message { margin-bottom: 10px;color: green; }
+    .mauticform-row { display: block; margin-bottom: 20px; }
+    .mauticform-label { font-size: 1.1em; display: block; font-weight: bold; margin-bottom: 5px; }
+    .mauticform-row.mauticform-required .mauticform-label:after { color: #e32; content: " *"; display: inline; }
+    .mauticform-helpmessage { display: block; font-size: 0.9em; margin-bottom: 3px; }
+    .mauticform-errormsg { display: block; color: red; margin-top: 2px; }
+    .mauticform-selectbox, .mauticform-input, .mauticform-textarea { width: 100%; padding: 0.5em 0.5em; border: 1px solid #CCC; background: #fff; box-shadow: 0px 0px 0px #fff inset; border-radius: 4px; box-sizing: border-box; }
+    .mauticform-checkboxgrp-row {}
+    .mauticform-checkboxgrp-label { font-weight: normal; }
+    .mauticform-checkboxgrp-checkbox {}
+    .mauticform-radiogrp-row {}
+    .mauticform-radiogrp-label { font-weight: normal; }
+    .mauticform-radiogrp-radio {}
+    .mauticform-button-wrapper .mauticform-button.btn-default, .mauticform-pagebreak-wrapper .mauticform-pagebreak.btn-default { color: #5d6c7c;background-color: #ffffff;border-color: #dddddd;}
+    .mauticform-button-wrapper .mauticform-button, .mauticform-pagebreak-wrapper .mauticform-pagebreak { display: inline-block;margin-bottom: 0;font-weight: 600;text-align: center;vertical-align: middle;cursor: pointer;background-image: none;border: 1px solid transparent;white-space: nowrap;padding: 6px 12px;font-size: 13px;line-height: 1.3856;border-radius: 3px;-webkit-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none;}
+    .mauticform-button-wrapper .mauticform-button.btn-default[disabled], .mauticform-pagebreak-wrapper .mauticform-pagebreak.btn-default[disabled] { background-color: #ffffff; border-color: #dddddd; opacity: 0.75; cursor: not-allowed; }
+    .mauticform-pagebreak-wrapper .mauticform-button-wrapper {  display: inline; }
+</style>
+<div id="mauticform_wrapper_simplifyappandrecosta" class="mauticform_wrapper">
+    <form autocomplete="false" role="form" method="post" action="https://wesimplify.pt/mautic/form/submit?formId=1" id="mauticform_simplifyappandrecosta" data-mautic-form="simplifyappandrecosta" enctype="multipart/form-data">
+        <div class="mauticform-error" id="mauticform_simplifyappandrecosta_error"></div>
+        <div class="mauticform-message" id="mauticform_simplifyappandrecosta_message"></div>
+        <div class="mauticform-innerform">
+
+            
+          <div class="mauticform-page-wrapper mauticform-page-1" data-mautic-form-page="1">
+
+            <div id="mauticform_simplifyappandrecosta_email" data-validate="email" data-validation-type="email" class="mauticform-row mauticform-email mauticform-field-1 mauticform-required">
+                <label id="mauticform_label_simplifyappandrecosta_email" for="mauticform_input_simplifyappandrecosta_email" class="mauticform-label">Email</label>
+                <input id="mauticform_input_simplifyappandrecosta_email" name="mauticform[email]" value="" class="mauticform-input" type="email">
+                <span class="mauticform-errormsg" style="display: none;">Obrigatório</span>
+            </div>
+
+            <div id="mauticform_simplifyappandrecosta_f_name" data-validate="f_name" data-validation-type="text" class="mauticform-row mauticform-text mauticform-field-2 mauticform-required">
+                <label id="mauticform_label_simplifyappandrecosta_f_name" for="mauticform_input_simplifyappandrecosta_f_name" class="mauticform-label">Name</label>
+                <input id="mauticform_input_simplifyappandrecosta_f_name" name="mauticform[f_name]" value="" class="mauticform-input" type="text">
+                <span class="mauticform-errormsg" style="display: none;">This is required.</span>
+            </div>
+
+            <div id="mauticform_simplifyappandrecosta_phone_optional" class="mauticform-row mauticform-tel mauticform-field-3">
+                <label id="mauticform_label_simplifyappandrecosta_phone_optional" for="mauticform_input_simplifyappandrecosta_phone_optional" class="mauticform-label">Phone (optional)</label>
+                <input id="mauticform_input_simplifyappandrecosta_phone_optional" name="mauticform[phone_optional]" value="" class="mauticform-input" type="tel">
+                <span class="mauticform-errormsg" style="display: none;"></span>
+            </div>
+
+            <div id="mauticform_simplifyappandrecosta_notes_optional" class="mauticform-row mauticform-text mauticform-field-4">
+                <label id="mauticform_label_simplifyappandrecosta_notes_optional" for="mauticform_input_simplifyappandrecosta_notes_optional" class="mauticform-label">Notes (optional)</label>
+                <input id="mauticform_input_simplifyappandrecosta_notes_optional" name="mauticform[notes_optional]" value="" class="mauticform-input" type="text">
+                <span class="mauticform-errormsg" style="display: none;"></span>
+            </div>
+
+            <div id="mauticform_simplifyappandrecosta_submit" class="mauticform-row mauticform-button-wrapper mauticform-field-5">
+                <button type="submit" name="mauticform[submit]" id="mauticform_input_simplifyappandrecosta_submit" value="" class="mauticform-button ui-btn ui-btn-active ui-shadow ui-corner-all">Submit</button>
+            </div>
+            </div>
+        </div>
+
+        <input type="hidden" name="mauticform[formId]" id="mauticform_simplifyappandrecosta_id" value="1">
+        <input type="hidden" name="mauticform[return]" id="mauticform_simplifyappandrecosta_return" value="">
+        <input type="hidden" name="mauticform[formName]" id="mauticform_simplifyappandrecosta_name" value="simplifyappandrecosta">
+
+        </form>
+</div>
+
+
+
+
+                </div>
+            </div>
+        <div data-role="footer" data-position="fixed">
+            <div data-role="navbar">
+                <ul>
+                    <li><a href="#page_newmenu" data-icon="back">Back</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--Email-->
+    <!--page_qrcode-->
+    <div data-role="page" id="page_qrcode">
+        <div data-role="header">
+            <h1></h1>
+            <a href="#page_settings"
+                class="ui-btn-right ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-right ui-icon-gear">Settings</a>
+        </div>
+        <script type="text/javascript" src="https://platform.linkedin.com/badges/js/profile.js" async defer></script>
+        <div data-role="main" align="Center" class="ui-content">
+            <div class="container">
+                <div>
+                    <p> Your QR Code</p>
+                </div>
+                <div data-role="navbar">
+                    <ul>
+                        <li><a href="#page_email" data-icon="mail">Send Email</a></li>
+                        <li><a href="#page_sharecard" data-icon="action" >Meet</a></li>
+                        <li><a href="#page_qrcode" data-icon="camera" style="background:#e5e5e5">QR Code</a></li>
+                    </ul>
+                </div>
+                <div><br /></div>
+                <br />
+                <div class="qrcode">
+                    <div class="text-block">
+                        <h4>André Costa</h4>
+                            <p>We Simplify</p>
+                            <p>www.wesimplify.app</p>
+                            <p>hello@simplify.app</p>
+                            <p>Telemóvel: 935857057</p>
+
+                    </div>
+                    <img src="images/qrcode.png" alt="Qr Code" style="width:50%; padding-bottom:10px;" />
+                </div>
+
+                <style>
+                    .qrcode {
+                        position: relative;
+                        font-family: Arial;
+                        background-color: white;
+                    }
+
+                    .text-block {
+                        bottom: 5px;
+                        top: 5px;
+                        background-color: white;
+                        color: #3a3a3a;
+                        padding: 1px;
+                    }
+                </style>
+
+                <div data-role="footer" data-position="fixed">
+                    <div data-role="navbar">
+                        <ul>
+                            <li><a href="#page_newmenu" data-icon="back">Back</a></li>
+                            <li><a href="#page_qrreader" data-icon="camera">QR Reader</a></li>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--QrCode-->
+
+    <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-firestore.js"></script>
+
+
+  <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+    apiKey: "AIzaSyBbD0metPjyPvmWoLJK2NbNljmj3DVbgMY",
+    authDomain: "simplify-lite-simplify.firebaseapp.com",
+    databaseURL: "https://simplify-lite-simplify.firebaseio.com",
+    projectId: "simplify-lite-simplify",
+    storageBucket: "simplify-lite-simplify.appspot.com",
+    messagingSenderId: "624824780731",
+    appId: "1:624824780731:web:3c659529594c81ebc7a69e",
+    measurementId: "G-7GDJ8W7GCM"
+  };
+        // Initialize Firebase
+        var app = firebase.initializeApp(firebaseConfig);
+        db = firebase.firestore(app);
+        var iduser;
+        var nomeDoc = "";
+        var urlDoc = "";
+    </script>
+
+
+
+    <script>
+
+        function VerImagem(docid) {
+            var storageRef = firebase.storage().ref();
+            storageRef.child(iduser + '/' + docid).getDownloadURL().then(function (url) {
+
+                var codigohtml = "<img src='" + url + "' style='width:100%;' />";
+                $("#verdocs").html(codigohtml);
+                $("#nomeimagem").html(docid);
+                nomeDoc = docid;
+                urlDoc = url;
+                $.mobile.changePage("#page_verdocs");
+
+            }).catch(function (error) {
+                // Handle any errors
+                navigator.notification.alert("Indisponível");
+            });
+
+
+        }
+    </script>
+
+    <!--invocar JS-->
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="scripts/platformOverrides.js"></script>
+    <script type="text/javascript" src="scripts/index.js"></script>
+
+    <!--JQUERY-->
+    <script src="scripts/jquery-2.2.4.min.js"></script>
+    <script src="scripts/jquery.mobile-1.4.5.min.js"></script>
+
+</body>
+
+</html>
